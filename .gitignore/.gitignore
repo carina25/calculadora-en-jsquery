@@ -1,0 +1,379 @@
+FUNCIONALIDAD JS 
+//Declaramos variables
+var Memory = 0;
+var operandoa;
+var operandob;
+var operacion;
+
+function init()
+{
+	//variables
+	var resultado = document.getElementById('resultado');
+	var reset = document.getElementById('reset');
+	var suma = document.getElementById('suma');
+	var resta = document.getElementById('resta');
+	var multiplicacion = document.getElementById('multiplicacion');
+	var division = document.getElementById('division');
+	var igual = document.getElementById('igual');
+	var uno = document.getElementById('uno');
+	var dos = document.getElementById('dos');
+	var tres = document.getElementById('tres');
+	var cuatro = document.getElementById('cuatro');
+	var cinco = document.getElementById('cinco');
+	var seis = document.getElementById('seis');
+	var siete = document.getElementById('siete');
+	var ocho = document.getElementById('ocho');
+	var nueve = document.getElementById('nueve');
+	var cero = document.getElementById('cero');
+	///////////////// E X T R A ///////////////////////////////
+	var porcentaje = document.getElementById('porcentaje');
+	var sen = document.getElementById('sen');
+	var cos = document.getElementById('cos');
+	var tan = document.getElementById('tan');
+	var potencia = document.getElementById('potencia');
+	var grados = document.getElementById('grados');
+	var radianes = document.getElementById('radianes');
+	var Memoriaplus= document.getElementById('M+');
+	var Memoriarest= document.getElementById('M-');
+	var Memoriarecov= document.getElementById('MR');
+	var punto=document.getElementById('punto');
+	var mcclear=document.getElementById('MC');
+
+	//eventos de click
+	punto.onclick = function(e){
+		resultado.textContent = resultado.textContent  + ".";
+		punto.disabled=true;
+		
+  }
+  dos
+
+	/**/ 
+	uno.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "1";
+	}
+	dos.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "2";
+	}
+	tres.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "3";
+	}
+	cuatro.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "4";
+	}
+	cinco.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "5";
+	}
+	seis.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "6";
+	}
+	siete.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "7";
+	}
+	ocho.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "8";
+	}
+	nueve.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "9";
+	}
+	cero.onclick = function(e){
+  		resultado.textContent = resultado.textContent  + "0";
+	}
+	reset.onclick = function(e){
+  		resetear();
+	}
+	suma.onclick = function(e){
+  		operandoa = resultado.textContent;
+		  operacion = "+";
+		  punto.disabled=false;
+  		limpiar();
+	}
+	resta.onclick = function(e){
+  		operandoa = resultado.textContent;
+		  operacion = "-";
+		  punto.disabled=false;
+  		limpiar();
+	}
+	multiplicacion.onclick = function(e){
+  		operandoa = resultado.textContent;
+		  operacion = "*";
+		  punto.disabled=false;
+  		limpiar();
+	}
+	division.onclick = function(e){
+  		operandoa = resultado.textContent;
+		  operacion = "/";
+		  punto.disabled=false;
+  		limpiar();
+	}
+	///////// E X T R A ///////
+	porcentaje.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "%";
+		punto.disabled=false;
+		limpiar();
+  	}
+  	sen.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "sen";
+		punto.disabled=false;
+		//limpiar();
+	}
+	cos.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "cos";
+		punto.disabled=false;
+	}
+	tan.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "tan";
+		punto.disabled=false;
+	}
+	potencia.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "potencia";
+		punto.disabled=false;
+		limpiar();
+	}
+	grados.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "grados";
+		
+		limpiar();
+	}
+	radianes.onclick = function(e){
+		operandoa = resultado.textContent;
+		operacion = "radianes";
+		//limpiar();
+	}
+	igual.onclick = function(e){
+  		operandob = resultado.textContent;
+  		resolver();
+	}
+	
+	Memoriaplus.onclick = function(e){
+		operacion="m+";
+        Memory=parseFloat(Memory)+parseFloat(resultado.textContent);
+        limpiar();
+	}
+	Memoriarest.onclick = function(e){
+		if(Memory==0)
+        {
+            Memory=parseFloat(-resultado.textContent);
+        }
+        else
+        {
+            Memory=parseFloat(Memory)+parseFloat(-resultado.textContent);
+        }
+        limpiar();
+	}
+	Memoriarecov.onclick = function(e){
+		resultado.textContent=Memory;
+	}
+	mcclear.onclick = function(e){
+		//resultado.textContent=Memory;
+		Memory=Memory=0;
+		limpiar();
+	}
+	
+}
+
+
+function limpiar(){
+	resultado.textContent = "";
+}
+
+function resetear(){
+	resultado.textContent = "";
+	operandoa = 0;
+	operandob = 0;
+	operacion = "";
+}
+
+function resolver(){
+	var res = 0;
+	switch(operacion){
+		case "+":
+			res = parseFloat(operandoa) + parseFloat(operandob);
+			break;
+
+		case "-":
+		    res = parseFloat(operandoa) - parseFloat(operandob);
+		    break;
+
+		case "*":
+			res = parseFloat(operandoa) * parseFloat(operandob);
+			break;
+
+		case "/":
+			res = parseFloat(operandoa) / parseFloat(operandob);
+			break;
+		case "%":
+			res = (parseFloat(operandoa) * parseFloat(operandob))/100;
+			break;
+		case "sen":
+			res = Math.sin(parseFloat(operandob * Math.PI/180));
+			
+			break;
+		case "cos":
+			res = Math.cos(parseFloat(operandoa * Math.PI/180));
+			break;
+		case "tan":
+			res = Math.tan(parseFloat(operandoa * Math.PI/180));
+			break;
+		case "potencia":
+			res = Math.pow(parseFloat(operandoa), parseFloat(operandob));
+			break;
+		case "grados":
+			res = ((parseFloat(operandoa)*180)/Math.PI);
+			break;
+		case "radianes":
+			res = ((parseFloat(operandoa)*Math.PI)/180);
+			break;						
+	}
+	resetear();
+	resultado.textContent = res;
+}
+
+INDEX.HTML
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculadora con Jsquery</title>
+<link type="text/css" href="estilo.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready
+	(
+		function()
+		{
+			$(':button').mouseover
+			(
+				function()
+				{
+				/*$(this).fadeOut(1000).fadeIn(50);
+				$(':button').css ('	background-color','rgb 15, 155, 236')*/
+				   
+				   
+				}
+			);
+
+			
+			$('#uno').click
+			(
+				function()
+				{
+					
+					$('#uno').css ('background-color','purple')
+				
+				}
+			);
+			$('#dos').click
+			(
+				function()
+				{
+					
+					$('#dos').css ('background-color','blue')
+				/*	$('#dos').css ('background-color','purple')
+					$('#tres').css ('background-color','purple')
+					$('#cuatro').css ('background-color','purple')
+					$('#cinco').css ('background-color','purple')
+					$('#seis').css ('background-color','purple')
+					$('#siete').css ('background-color','purple')
+					$('#ocho').css ('background-color','purple')
+					$('#nueve').css ('background-color','purple')
+					$('#cero').css ('background-color','purple')/*/
+				}
+			);
+
+	
+		
+		}
+	);
+</script>
+</head>
+<body onload="init();">
+
+<table class="calculadora">
+<tr>
+	<td colspan="4"><span id="resultado"></span></td>
+</tr>
+<tr>
+	<td><button id="siete">7</button></td><td><button id="ocho">8</button></td><td><button id="nueve">9</button></td><td><button id="division">/</button></td>
+</tr>
+<tr>
+	<td><button id="cuatro">4</button></td><td><button id="cinco">5</button></td><td><button id="seis">6</button></td><td><button id="multiplicacion">*</button></td>
+</tr>
+<tr>
+	<td><button id="uno">1</button></td><td><button id="dos">2</button></td><td><button id="tres">3</button></td><td><button id="resta">-</button></td>
+</tr>
+<tr>
+	<td><button id="igual">=</button></td><td><button id="cero">0</button></td><td><button id="reset">CE</button></td><td><button id="suma">+</button></td>
+</tr>
+<tr>
+	<td><button id="porcentaje">%</button></td><td><button id="sen">Sin</button></td><td><button id="cos">Cos</button></td><td><button id="tan">Tan</button></td>
+</tr>
+<tr>
+	<td><button id="potencia">^</button></td><td><button id="grados">Grad</button></td><td><button id="radianes">Rad</button><td><button id="M+">M+</button></td>
+</tr>
+<tr>
+	</td><td><button id="M-">M-</button></td><td><button id="MR">MR</button></td><td><button id="punto">.</button></td><td><button id="MC">Mc</button></td>
+</tr>
+
+</table>
+
+<script src="funcionalidad.js"></script>
+</body>
+</html>
+STYLES
+.calculadora{ 
+	display:block;
+	margin:0 auto;
+	padding:20px;
+	background-color:rgb(15, 155, 236);
+	width:390px;
+	height:650px;
+
+}
+.calculadora td button{
+	display:block;
+	background-color:rgb(197, 122, 226);
+	width:70px;
+	height: 70px;
+	font-size: 25px;
+}table tr:hover{
+	
+	/*background-color:rgb(42, 221, 253);*/
+	
+}
+button:hover {
+background: rgba(0,0,0,0);
+color: #3a7999;
+box-shadow: inset 0 0 0 3px #3a7999;
+}
+
+#resultado{
+	/*display:block;*/
+display: grid;
+	/*padding-top:20px;*/
+	text-align: center;
+	font-size: 40px;
+	margin-bottom: 50px;
+	width:390px;
+	height: 100px;
+	line-height: 100px;
+	background-color:rgb(221, 31, 31);
+	
+	overflow-x: scroll;
+}
+
+/*.calculadora td:hover
+{
+	
+	background-color:rgb(42, 211, 253);
+	
+	}
+	.calculadoraCuerpo div:hover
+{
+    background: #DC4C46;
+}*/
